@@ -8,12 +8,9 @@ import java.time.DayOfWeek;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 //import javax.persistence.Transient;
 import javax.persistence.Temporal;
@@ -61,9 +58,7 @@ public class User {
 	private String password;
 	@Basic(optional = false)
 	@Column(name = "roleid")
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "roleid")
-	private Userrole role;
+	private int role;
 	@Basic(optional = false)
 	@Column(name = "status")
 	private String Status;
@@ -129,10 +124,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Userrole getRole() {
+	public int getRole() {
 		return role;
 	}
-	public void setRole(Userrole role) {
+	public void setRole(int role) {
 		this.role = role;
 	}
 	public String getStatus() {
@@ -150,7 +145,7 @@ public class User {
 	//Constructor with all fields
 	
 	public User(String firstname, String secondname, String surname, Date dob, String email, int phone,
-			String userid, String password, Userrole role) throws ParseException {
+			String userid, String password, int role) throws ParseException {
 		super();
 		this.firstname = firstname;
 		this.secondname = secondname;
@@ -163,11 +158,11 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = role;
+		this.role = 1;
 	}
 	
 	//constructor without phone number
-	public User(String firstname, String secondname, String surname, Date dob, String email, String userid, String password, Userrole role) throws ParseException {
+	public User(String firstname, String secondname, String surname, Date dob, String email, String userid, String password, int role) throws ParseException {
 		super();
 		this.firstname = firstname;
 		this.secondname = secondname;
@@ -180,12 +175,12 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = role;
+		this.role = 1;
 	}
 	
 	//Constructor without secondname
 	public User(String firstname, String surname, Date dob, String email, int phone, String userid,
-			String password, Userrole role) throws ParseException {
+			String password, int role) throws ParseException {
 		super();
 		this.firstname = firstname;
 		this.surname = surname;
@@ -197,12 +192,12 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = role;
+		this.role = 1;
 	}
 	
 	//Constructor without secondname and phone number
 	public User(String firstname, String surname, Date dob, String email, String userid,
-			String password, Userrole role) throws ParseException {
+			String password, int role) throws ParseException {
 		super();
 		this.firstname = firstname;
 		this.surname = surname;
@@ -214,7 +209,7 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = role;
+		this.role = 1;
 	}
 	
 	//Default constructor

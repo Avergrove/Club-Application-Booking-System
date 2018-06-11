@@ -10,7 +10,7 @@ import javax.persistence.Table;
 @Table(name = "category")
 public class Category {
 	
-	@OneToMany
+	//@OneToMany
 	@Id
 	@Column(name = "categoryid")
 	private int categoryId;

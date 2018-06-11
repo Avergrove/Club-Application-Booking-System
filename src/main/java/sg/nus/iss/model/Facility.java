@@ -3,7 +3,6 @@ package sg.nus.iss.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,7 +20,7 @@ public class Facility {
 	private String location;
 	@Column(name = "facilitystatus")
 	private String facilitystatus;
-	@ManyToOne
+	//@ManyToOne
 	@Column(name = "categoryid")
 	private int categoryId;
 

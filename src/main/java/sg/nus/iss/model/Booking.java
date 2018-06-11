@@ -39,11 +39,11 @@ public class Booking {
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "bookenddate")
 	private Date enddate;
-	@Temporal(TemporalType.TIME)
+	//@Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern="hh-mm")
 	@Column(name = "bookstarttime")
 	private Time starttime;
-	@Temporal(TemporalType.TIME)
+	//@Temporal(TemporalType.TIME)
     @DateTimeFormat(pattern="hh-mm")
 	@Column(name = "bookendtime")
 	private Time endtime;
