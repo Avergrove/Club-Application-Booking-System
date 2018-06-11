@@ -13,10 +13,10 @@
 	<br />
 	<br />
 	<table class="borderAll">
-		<c:forEach var="student" items="${userList}" varStatus="status">
+		<c:forEach var="user" items="${userList}" varStatus="status">
 			<tr class="${status.index%2==0?'even':'odd'}">
 				<td class="nowrap">${status.index}</td>
-				<td class="nowrap">${student.password}</td>
+				<td class="nowrap">${user.password}</td>
 
 			</tr>
 		</c:forEach>

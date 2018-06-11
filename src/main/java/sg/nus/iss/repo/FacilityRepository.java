@@ -7,4 +7,5 @@ import sg.nus.iss.model.Facility;
 public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	
 
+	
 }
