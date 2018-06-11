@@ -54,6 +54,4 @@ public class FacilityServiceImpl implements FacilityService {
 		return facilityRepository.findFacilitiesByCategoryId(categoryId);
 	}
 	
-	
-	
 }

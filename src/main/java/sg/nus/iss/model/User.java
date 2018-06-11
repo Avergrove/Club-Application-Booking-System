@@ -1,20 +1,25 @@
 package sg.nus.iss.model;
 
 import java.util.Date;
+import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 //import javax.persistence.Transient;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -62,6 +67,10 @@ public class User {
 	@Basic(optional = false)
 	@Column(name = "status")
 	private String Status;
+	@Transient
+	@OneToMany
+	@JoinColumn(name = "memberid")
+	private List<Booking> bookset = new ArrayList<Booking>();
 	
 	//Getters and Setters
 	public String getFirstname() {
@@ -142,8 +151,14 @@ public class User {
 		return memberid;
 	}
 	
-	//Constructor with all fields
+	public List<Booking> getBookset() {
+		return bookset;
+	}
+	public void setBookset(List<Booking> bookset) {
+		this.bookset = bookset;
+	}
 	
+	//Constructor with all fields
 	public User(String firstname, String secondname, String surname, Date dob, String email, int phone,
 			String userid, String password, int role) throws ParseException {
 		super();

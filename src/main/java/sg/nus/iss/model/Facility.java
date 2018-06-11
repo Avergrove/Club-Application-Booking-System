@@ -1,9 +1,16 @@
 package sg.nus.iss.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "facility")
@@ -20,9 +27,13 @@ public class Facility {
 	private String location;
 	@Column(name = "facilitystatus")
 	private String facilitystatus;
-	//@ManyToOne
-	@Column(name = "categoryid")
-	private int categoryId;
+	@ManyToOne
+	@JoinColumn(name = "categoryid")
+	private Category categoryId;
+	@Transient
+	@OneToMany
+	@JoinColumn(name = "faciltiyid")
+	private List<Booking> facilityset = new ArrayList<Booking>();
 
 	//getters & Setters
 	public int getFacilityId() {
@@ -61,8 +72,16 @@ public class Facility {
 		this.facilitystatus = facilitystatus;
 	}
 
-	public int getCategoryId() {
+	public Category getCategoryId() {
 		return categoryId;
+	}
+
+	public List<Booking> getFacilityset() {
+		return facilityset;
+	}
+
+	public void setFacilityset(List<Booking> facilityset) {
+		this.facilityset = facilityset;
 	}
 
 	// Default Constructor
@@ -72,7 +91,7 @@ public class Facility {
 
 	// Constructor using fields
 	public Facility(String facilityname, String facilitydescription, String location, String facilitystatus,
-			int categoryId) {
+			Category categoryId) {
 		super();
 		this.facilityname = facilityname;
 		this.facilitydescription = facilitydescription;

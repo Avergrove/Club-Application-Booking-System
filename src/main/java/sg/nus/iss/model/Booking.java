@@ -1,6 +1,5 @@
 package sg.nus.iss.model;
 
-import java.sql.Time;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,7 +24,7 @@ public class Booking {
 	@JoinColumn(name = "memberid")
 	private User usr;
 	@ManyToOne
-	@JoinColumn(name = "faciltiyid")
+	@JoinColumn(name = "facilityid")
 	private Facility fac;
 	@Column(name = "dateofbooking")
 	@Temporal(TemporalType.DATE)
@@ -35,18 +34,6 @@ public class Booking {
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "bookstartdate")
 	private Date startdate;
-	@Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-	@Column(name = "bookenddate")
-	private Date enddate;
-	//@Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern="hh-mm")
-	@Column(name = "bookstarttime")
-	private Time starttime;
-	//@Temporal(TemporalType.TIME)
-    @DateTimeFormat(pattern="hh-mm")
-	@Column(name = "bookendtime")
-	private Time endtime;
 	@Column(name = "bookingcomments")
 	private String comments;
 	@Column(name = "bookingstatus")
@@ -84,24 +71,7 @@ public class Booking {
 	public void setStartdate(Date startdate) {
 		this.startdate = startdate;
 	}
-	public Date getEnddate() {
-		return enddate;
-	}
-	public void setEnddate(Date enddate) {
-		this.enddate = enddate;
-	}
-	public Time getStarttime() {
-		return starttime;
-	}
-	public void setStarttime(Time starttime) {
-		this.starttime = starttime;
-	}
-	public Time getEndtime() {
-		return endtime;
-	}
-	public void setEndtime(Time endtime) {
-		this.endtime = endtime;
-	}
+	
 	public String getComments() {
 		return comments;
 	}
@@ -116,31 +86,23 @@ public class Booking {
 	}
 	
 	//constructor using fields
-	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, Date enddate,
-			Time starttime, Time endtime, String comments, String bookstatus) {
+	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, String comments, String bookstatus) {
 		super();
 		this.usr = usr;
 		this.fac = fac;
 		this.bookingdate = bookingdate;
 		this.startdate = startdate;
-		this.enddate = enddate;
-		this.starttime = starttime;
-		this.endtime = endtime;
 		this.comments = comments;
 		this.bookstatus = bookstatus;
 	}
 	
 	//constructor without comments
-	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, Date enddate,
-			Time starttime, Time endtime, String bookstatus) {
+	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, String bookstatus) {
 		super();
 		this.usr = usr;
 		this.fac = fac;
 		this.bookingdate = bookingdate;
 		this.startdate = startdate;
-		this.enddate = enddate;
-		this.starttime = starttime;
-		this.endtime = endtime;
 		this.bookstatus = bookstatus;
 	}
 

@@ -28,6 +28,7 @@ import sg.nus.iss.services.FacilityService;
 @Controller
 @RequestMapping(value="/facility")
 public class FacilityController {
+	
 	@Autowired
 	private FacilityService fService;
 	

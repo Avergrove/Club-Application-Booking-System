@@ -14,4 +14,5 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	ArrayList<Facility> findFacilitiesByCategoryId(@Param("categoryId") int categoryId);
 		
 
+	
 }
