@@ -44,6 +44,8 @@
 <title>Booking Page</title>
 </head>
 <body>
+
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <h1>Booking</h1>
 <br>
 <br>
