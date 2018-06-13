@@ -2,6 +2,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<head>
+
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+</head>
+
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <h3>Facility List page</h3>
 
 <a href="${pageContext.request.contextPath}/Admin/Facility/create">Add
@@ -39,3 +46,4 @@
 		</tbody>
 	</table>
 </c:if>
+</body>

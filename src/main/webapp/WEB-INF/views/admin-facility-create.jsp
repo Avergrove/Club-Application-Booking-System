@@ -4,6 +4,12 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<head>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+</head>
+
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <h3>New Facility page</h3>
 <form:form method="POST" modelAttribute="facility"
 	action="${pageContext.request.contextPath}/Admin/Facility/create.html">
@@ -50,4 +56,5 @@
 		</tbody>
 	</table>
 </form:form>
+</body>
 

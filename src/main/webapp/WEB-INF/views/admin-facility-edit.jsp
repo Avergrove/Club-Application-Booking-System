@@ -3,6 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+<head>
+
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+</head>
+
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <h3>Edit Facility page</h3>
 
 <form:form method="POST" modelAttribute="facility"
@@ -58,3 +65,4 @@
 		</tbody>
 	</table>
 </form:form>
+</body>
