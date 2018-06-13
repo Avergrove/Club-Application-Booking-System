@@ -54,11 +54,11 @@
 						
 			<div class="flex-item">
 				<div class="card">
-					<img class="card-img-top" src="https://www.360logica.com/blog/wp-content/uploads/2016/02/Role-of-QA-in-Tech-Support-768x594.jpg"/>
+					<img class="card-img-top" src="http://www.cccul.com/wp-content/uploads/2017/10/member.jpg"/>
 					<div class="card-body">
-    					<h5 class="card-title">Role Administration</h5>
-    					<p class="card-text">Adjust the list of available rows.</p>
-						<a href="/iss/Admin/Role/list" class="btn btn-primary">View Listing</a>
+    					<h5 class="card-title">Member Administration</h5>
+    					<p class="card-text">View and edit the settings of members</p>
+						<a href="/iss/Admin/User/list" class="btn btn-primary">View Listing</a>
   					</div>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 						
 			<div class="flex-item">
 				<div class="card">
-					<img class="card-img-top" src="https://www.360logica.com/blog/wp-content/uploads/2016/02/Role-of-QA-in-Tech-Support-768x594.jpg"/>
+					<img class="card-img-top card-image" src="https://www.360logica.com/blog/wp-content/uploads/2016/02/Role-of-QA-in-Tech-Support-768x594.jpg"/>
 					<div class="card-body">
     					<h5 class="card-title">Role Administration</h5>
     					<p class="card-text">Adjust the list of available rows.</p>

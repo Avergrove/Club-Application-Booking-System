@@ -9,14 +9,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
+	<title>New Member Creation</title>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	
 	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>	
+	
 </head>
-<title>New Member Creation</title>
-<h1>New Member Creation Form</h1>
 <body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 
 	<form:form id="createform" method="POST" modelAttribute="user"
 		action="${pageContext.request.contextPath}/Admin/User/create.html">

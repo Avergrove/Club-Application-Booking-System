@@ -6,8 +6,11 @@ import sg.nus.iss.model.Category;
 
 public interface CategoryService {
 	
-Category CreateCategory(Category ca);
-	
+	Category CreateCategory(Category ca);
+
 	ArrayList<Category> findAllCategory();
 
+	Category findCategoryById(int s);
+
+	Category changeCategory(Category f);
 }

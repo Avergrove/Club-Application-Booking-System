@@ -10,7 +10,10 @@ import sg.nus.iss.model.Facility;
 
 public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 
-	@Query("SELECT f from Facility f WHERE f.categoryId = :categoryId")
+	@Query("SELECT f FROM Facility f where f.facilityId = :id")
+	Facility findFacilityById(@Param("id") Integer id);	
+	
+	@Query("SELECT f from Facility f WHERE f.categoryid = :categoryId")
 	ArrayList<Facility> findFacilitiesByCategoryId(@Param("categoryId") int categoryId);
 		
 	@Query("SELECT f from Facility f WHERE f.facilityname LIKE %:facilityName%")

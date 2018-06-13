@@ -17,8 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Category CreateCategory(Category ca) {
-		// TODO Auto-generated method stub
-		return null;
+		return crepos.saveAndFlush(ca);
 	}
 
 	@Override
@@ -26,5 +25,19 @@ public class CategoryServiceImpl implements CategoryService {
 		ArrayList<Category> cl = (ArrayList<Category>) crepos.findAll();
 		return cl;
 	}
-
+	
+	
+   @Override
+	public Category findCategoryById(int s) {
+		return crepos.findCategoryById(s);
+	}
+   
+   
+	
+	@Override
+	public Category changeCategory(Category c) {
+		return crepos.saveAndFlush(c);
+	}
+	
+	
 }

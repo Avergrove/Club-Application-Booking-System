@@ -1,21 +1,30 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
 
-<h3>User List page ${fn.length(Categorylist)}</h3>
 
-<c:if test="${fn:length(Categorylist) gt 0}">
-	<br />
-	<br />
-	<table class="borderAll">
-		<c:forEach var="category" items="${Categorylist}" varStatus="status">
-			<tr class="${status.index%2==0?'even':'odd'}">
-				<td class="nowrap">${status.index}</td>
-				<td class="nowrap">${category.categoryname}</td>
+<h3>Category List page</h3>
+<a href="${pageContext.request.contextPath}/Admin/Category/create">Add
+	Category</a>
+	<c:if test="${fn:length(categorylist) gt 0}">
+	<table>
+		<thead>
+			<tr class="listHeading">
+				<th><spring:message code="fieldLabel.CategoryId" /></th>
+				<th><spring:message code="fieldLabel.CategoryName" /></th>
+				<th><spring:message code="caption.edit" /></th>
 			</tr>
-		</c:forEach>
+		</thead>
+		<tbody>
+			<c:forEach var="Category" items="${categorylist}">
+				<tr class="listRecord">
+					<td>${Category.categoryId}</td>
+					<td>${Category.categoryname}</td>
+					<td align="center"><a
+						href="${pageContext.request.contextPath}/Admin/Category/edit/${Category.categoryId}.html"><spring:message
+								code="caption.edit" /></a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 	</table>
-</c:if>
+	</c:if>

@@ -18,4 +18,18 @@ public interface FacilityService {
 	ArrayList<Facility> findFacilitiesByCategory(int categoryId);
 	
 	ArrayList<Facility> findFacilitiesByFacilityName(String facilityName);
+	
+
+	
+	//
+	
+	Facility CreateFacility(Facility f);
+	
+	ArrayList<Facility> findAllFacility();
+
+	Facility findFacilityById(int s);
+	
+	Facility changeFacility(Facility f);
+	
+	
 }

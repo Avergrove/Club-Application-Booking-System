@@ -58,4 +58,30 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findFacilitiesByFacilityName(String facilityName) {
 		return facilityRepository.findFacilitiesByFacilityName(facilityName);
 	}
+	
+
+	@Override	
+	public Facility CreateFacility(Facility f) {
+		// TODO Auto-generated method stub
+		return facilityRepository.saveAndFlush(f);
+	}
+
+	@Override
+	public ArrayList<Facility> findAllFacility() {
+		ArrayList<Facility> bl = (ArrayList<Facility>) facilityRepository.findAll();
+		return bl;
+	}
+	
+	@Override
+	public Facility findFacilityById(int s) {
+		return facilityRepository.findFacilityById(s);
+	}
+	
+	@Override
+	public Facility changeFacility(Facility f) {
+		return facilityRepository.saveAndFlush(f);
+	}
+
+		
+	
 }
