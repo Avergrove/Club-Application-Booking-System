@@ -17,4 +17,15 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT u FROM User u WHERE u.email=:email")
 	User findUserByEmail(@Param("email") String email);
 	
+	@Query("Select DISTINCT count(u) from User u where u.userid=:un")
+	int findUserIDAvailability(@Param("un") String userid);
+	
+	@Query("UPDATE User u SET u.Status = 'InActive' WHERE u.memberid =:id")
+	void UpdateMemberStatus(@Param("id") int memberid);
+	
+	@Query("Select roleid from User u where u.userid=:un")
+	int findUserrole(@Param("un") int memberid);	
+	
+	
+	
 }

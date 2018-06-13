@@ -14,4 +14,17 @@ public interface UserService {
 	User createUser(User user);
 	
 	ArrayList<User> findAllUsers(); 
+	
+	User findMember(int id);
+	
+	User UpdateMember(User user);
+	
+	int findUserIDAvailability(String userid);
+	
+	void UpdateMemberStatus(int memberid);
+
+	void removeUser (User u);
+
+	int findUserrole(int memberid);	
+	
 }

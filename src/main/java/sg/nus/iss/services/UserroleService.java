@@ -10,4 +10,10 @@ public interface UserroleService {
 	
 	ArrayList<Userrole> findAllRoles(); 
 	
+	Userrole findUserRole(int  userroleid);
+	
+	Userrole updateUserRole(Userrole user);
+	
+	void removeUserRole(Userrole user);
+	
 }

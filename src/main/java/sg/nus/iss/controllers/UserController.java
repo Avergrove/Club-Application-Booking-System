@@ -47,78 +47,7 @@ public class UserController {
 	// Check's user's submission, and register if valid.
 	@RequestMapping(value = "/register-authentication", method = RequestMethod.POST)
 	public ModelAndView registerUser(@ModelAttribute("user") User user, BindingResult result) {
-
-		ModelAndView mav = new ModelAndView();
-		if(result.hasErrors()) {
-			
-			mav.setViewName("redirect:/register");
-			mav.addObject("errorMessage", result.getAllErrors());
-			return mav;
-		}
-		
-		try {
-			// fill in the unfilled fields
-			user.setJoindate(new Date());
-			user.setExpirydate(new Date());
-			user.setStatus("active");
-			user.setRole(Userrole.MEMBER);
-			uService.createUser(user);
-			
-			mav.setViewName("redirect:/login-authentication");
-			mav.addObject("username", user.getUserid());
-			mav.addObject("password", user.getPassword());
-			
-			return mav;			
-			
-		}
-		
-		catch(Exception ex){
-			mav.setViewName("redirect:/register");
-			mav.addObject("errorMessage", String.format("firstname - - is null lol", user.getFirstname()));
-			
-			return mav;
-		}
-		
-		/*
-		except()
-		// Register the user. Server side security is theoretically speaking, not an issue for a class object
-		
-		User newUser = new User();
-		newUser.setFirstname(firstname);
-		newUser.setSecondname(secondname);
-		newUser.setSurname(surname);
-		System.out.print("\n\n\n\n\n\n\n\n\n\n\n");
-		System.out.println(dob);
-		System.out.println("\n\n\n\n\n\n\n\n\n");
-		
-		// Pay attention to the date
-		try {
-			newUser.setDob(new SimpleDateFormat("yyyy/MM/dd").parse(dob));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		newUser.setJoindate(new Date());
-		newUser.setExpirydate(new Date());
-		newUser.setEmail(email);
-		newUser.setPhone(Integer.parseInt(phone));
-		newUser.setStatus("active");
-		newUser.setUserid(username);
-		newUser.setPassword(password);
-		newUser.setRole(Userrole.MEMBER);
-		
-		// UserValidator userValidator = new UserValidator();
-		// userValidator.validate(userValidator, err);
-		
-		uService.createUser(newUser);
-		
-		
-		ModelAndView mav = new ModelAndView("redirect:/login-authentication");
-		mav.addObject("username", username);
-		mav.addObject("password", password);
-		
-		return mav;
-		*/
+		return null;
 	}		
 	
 	

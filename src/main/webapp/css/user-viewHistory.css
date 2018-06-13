@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+body{
+	background-image: url("https://placeimg.com/640/480/nature");
+	background-size: cover;
+	color: white;
+}
+
+.container{
+	margin-top: 5vh;
+}

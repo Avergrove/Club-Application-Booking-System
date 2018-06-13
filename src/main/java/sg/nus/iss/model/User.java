@@ -10,16 +10,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 //import javax.persistence.Transient;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,41 +33,59 @@ public class User {
 	@Id
 	@Column(name = "memberid")
 	private int memberid;
+	
 	@Basic(optional = false)
 	@Column(name = "firstname")
 	private String firstname;
+	
 	@Column(name = "secondname")
 	private String secondname;
+	
 	@Basic(optional = false)
 	@Column(name = "surname")
 	private String surname;
+	
 	@Basic(optional = false)
 	@Column(name = "dob")
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date dob;
+	
 	@Column(name = "joindate")
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date joindate;
+	
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "expirydate")
 	private Date expirydate;
+	
 	@Basic(optional = false)
-	@Column(name = "email")
+	@Column(name = "email", unique = true)
 	private String email;
+	
 	@Column(name = "phoneno")
 	private int phone;
+	
 	@Basic(optional = false)
-	@Column(name = "userid")
+	@Column(name = "userid", unique = true)
 	private String userid;
+	
 	@Basic(optional = false)
+	@Size(min=5, max=15, message= "Your passowrd should be between 5 to 15 characters")
 	@Column(name = "password")
 	private String password;
-	@Basic(optional = false)
-	@Column(name = "roleid")
-	private int role;
+	
+	@Transient
+	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="roleid", insertable=false, updatable=false)
+	private Userrole role;
+
+	@Column(name="roleid")
+	private int roleid;
+	
+
 	@Basic(optional = false)
 	@Column(name = "status")
 	private String Status;
@@ -134,10 +156,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public int getRole() {
+	public Userrole getRole() {
 		return role;
 	}
-	public void setRole(int role) {
+	public void setRole(Userrole role) {
 		this.role = role;
 	}
 	public String getStatus() {
@@ -152,6 +174,18 @@ public class User {
 		return memberid;
 	}
 	
+	public void setMemberid(int id) {
+		memberid = id;
+	}
+	
+
+	public int getRoleid() {
+		return roleid;
+	}
+	public void setRoleid(int roleid) {
+		this.roleid = roleid;
+	}
+	
 	public List<Booking> getBookset() {
 		return bookset;
 	}
@@ -161,7 +195,7 @@ public class User {
 	
 	//Constructor with all fields
 	public User(String firstname, String secondname, String surname, Date dob, String email, int phone,
-			String userid, String password, int role) throws ParseException {
+			String userid, String password, Userrole role) throws ParseException {
 		super();
 		this.firstname = firstname;
 		this.secondname = secondname;
@@ -174,10 +208,62 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = 1;
+		this.role = role;
 	}
 	
+	//Constructor with all fields
+		public User(String firstname, String secondname, String surname, Date dob, String email, int phone,
+				String userid, String password, int role) throws ParseException {
+			super();
+			this.firstname = firstname;
+			this.secondname = secondname;
+			this.surname = surname;
+			this.dob = dob;
+			this.email = email;
+			this.phone = phone;
+			this.userid = userid;
+			this.password = password;
+			this.joindate = DateChange();
+			this.expirydate = RenewExpiry(this.joindate);
+			this.Status = "Active";
+			this.roleid = role;
+		}
+	
+		//Constructor with all fields
+			public User(int id,String firstname, String secondname, String surname, Date dob, String email, int phone,
+						String userid, String password, int role) throws ParseException {
+					super();
+					this.memberid=id;
+					this.firstname = firstname;
+					this.secondname = secondname;
+					this.surname = surname;
+					this.dob = dob;
+					this.email = email;
+					this.phone = phone;
+					this.userid = userid;
+					this.password = password;
+					this.joindate = DateChange();
+					this.expirydate = RenewExpiry(this.joindate);
+					this.Status = "Active";
+					this.roleid = role;
+				}
 	//constructor without phone number
+	public User(String firstname, String secondname, String surname, Date dob, String email, String userid, String password, Userrole role) throws ParseException {
+		super();
+		this.firstname = firstname;
+		this.secondname = secondname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = 0;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.role = role;
+	}
+	
 	public User(String firstname, String secondname, String surname, Date dob, String email, String userid, String password, int role) throws ParseException {
 		super();
 		this.firstname = firstname;
@@ -191,10 +277,43 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = 1;
+		this.roleid = role;
+	}
+	
+	public User(int id,String firstname, String secondname, String surname, Date dob, String email, String userid, String password, int role) throws ParseException {
+		super();
+		this.memberid =id;
+		this.firstname = firstname;
+		this.secondname = secondname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = 0;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.roleid = role;
 	}
 	
 	//Constructor without secondname
+	public User(String firstname, String surname, Date dob, String email, int phone, String userid,
+			String password, Userrole role) throws ParseException {
+		super();
+		this.firstname = firstname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = phone;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.role = role;
+	}
+	
 	public User(String firstname, String surname, Date dob, String email, int phone, String userid,
 			String password, int role) throws ParseException {
 		super();
@@ -208,10 +327,42 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = 1;
+		this.roleid = role;
 	}
 	
+	public User(int id, String firstname, String surname, Date dob, String email, int phone, String userid,
+			String password, int role) throws ParseException {
+		super();
+		this.memberid = id;
+		this.firstname = firstname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = phone;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.roleid = role;
+	}
 	//Constructor without secondname and phone number
+	public User(String firstname, String surname, Date dob, String email, String userid,
+			String password, Userrole role) throws ParseException {
+		super();
+		this.firstname = firstname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = 0;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.role = role;
+	}
+	
 	public User(String firstname, String surname, Date dob, String email, String userid,
 			String password, int role) throws ParseException {
 		super();
@@ -225,11 +376,27 @@ public class User {
 		this.joindate = DateChange();
 		this.expirydate = RenewExpiry(this.joindate);
 		this.Status = "Active";
-		this.role = 1;
+		this.roleid = role;
 	}
 	
+	public User(int id,String firstname, String surname, Date dob, String email, String userid,
+			String password, int role) throws ParseException {
+		super();
+		this.memberid = id;
+		this.firstname = firstname;
+		this.surname = surname;
+		this.dob = dob;
+		this.email = email;
+		this.phone = 0;
+		this.userid = userid;
+		this.password = password;
+		this.joindate = DateChange();
+		this.expirydate = RenewExpiry(this.joindate);
+		this.Status = "Active";
+		this.roleid = role;
+	}
 	//Default constructor
-	public User() {
+	public User(){
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -251,18 +418,12 @@ public class User {
 		 return ddd;
 	}
 	
-	
 	@Override
 	public String toString() {
-		return "User [memberid=" + memberid + ", " + (firstname != null ? "firstname=" + firstname + ", " : "")
-				+ (secondname != null ? "secondname=" + secondname + ", " : "")
-				+ (surname != null ? "surname=" + surname + ", " : "") + (dob != null ? "dob=" + dob + ", " : "")
-				+ (joindate != null ? "joindate=" + joindate + ", " : "")
-				+ (expirydate != null ? "expirydate=" + expirydate + ", " : "")
-				+ (email != null ? "email=" + email + ", " : "") + "phone=" + phone + ", "
-				+ (userid != null ? "userid=" + userid + ", " : "")
-				+ (password != null ? "password=" + password + ", " : "") + "role =" + role + ","
-				+ (Status != null ? "Status=" + Status : "") + "]";
+		return "User [memberid=" + memberid + ", firstname=" + firstname + ", secondname=" + secondname + ", surname="
+				+ surname + ", dob=" + dob + ", joindate=" + joindate + ", expirydate=" + expirydate + ", email="
+				+ email + ", phone=" + phone + ", userid=" + userid + ", password=" + password + ", roleid=" + roleid
+				+ ", Status=" + Status + "]";
 	}
 	
 	public Date DateChange() throws ParseException

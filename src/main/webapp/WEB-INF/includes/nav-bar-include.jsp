@@ -13,8 +13,8 @@
         <a class="nav-link" href="${request.contextPath}/iss/Facility/list">Browse</a>
       </li>
 
-      <form class="form-inline my-2 my-lg-0">
-      	<input class="form-control mr-sm-2" type="search" placeholder="Search for a facility.." aria-label="Search">
+      <form class="form-inline my-2 my-lg-0" action = "Facility/list" method = "GET">
+      	<input class="form-control mr-sm-2" type = "text" name = "searchParam" placeholder="Search for a facility" aria-label="Search">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
    	  </form>
       
@@ -29,6 +29,7 @@
        		<a href="${request.contextPath}/iss/register"><button class="btn btn-outline-success my-2 my-sm-0">Register</button></a>
   	  	
   	  	</c:when>
+ 
   	  	
   	  	<c:otherwise>
       		<li class="nav-item dropdown">
@@ -36,10 +37,12 @@
           		Welcome, ${user.firstname}!
         		</a>
         	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        		<c:if test="${user.role == 2}">
+          		<a class="dropdown-item" href="${request.contextPath}/iss/Booking/viewHistory?memberId=${user.memberid}">View Booking History</a>
+        		<c:if test="${user.roleid == 2}">
           			<a class="dropdown-item" href="/iss/Admin"><span class="glyphicon glyphicon-edit"></span>Administrator Settings</a>
           			<div class="dropdown-divider"></div>
         		</c:if>
+        		
           		<a class="dropdown-item" href="${request.contextPath}/iss/logout">Logout</a>
         	</div>
       		</li>  	  	
