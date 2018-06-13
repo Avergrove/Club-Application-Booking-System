@@ -2,18 +2,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<head>
-	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
-	
-	<title>Member list</title>
-</head>
+<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
+	type="text/css" />
+<title>Member List</title>
 
-<body>
-	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+<a href="${pageContext.request.contextPath}/Admin/User/create">Add
+	Member</a>
 
 <c:if test="${fn:length(userList) gt 0}">
-	<a class="btn btn-primary" href="${pageContext.request.contextPath}/Admin/User/create">Add Member</a>
-	<table class="borderAll table table-light">
+	<br />
+	<br />
+	<table class="borderAll">
 		<tr>
 			<th><s:message code="label.user.id" /></th>
 			<th><s:message code="label.user.index" /></th>
@@ -27,6 +26,7 @@
 			<th><s:message code="label.user.phoneno" /></th>
 			<th><s:message code="label.user.status" /></th>
 			<th><s:message code="label.user.userid" /></th>
+			<th><s:message code="label.user.role"/></th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -44,15 +44,17 @@
 				<td class="nowrap">${user.phone}</td>
 				<td class="nowrap">${user.status}</td>
 				<td class="nowrap">${user.userid}</td>
-				<td align="center">
-				<a class="btn btn-success" href="${pageContext.request.contextPath}/Admin/User/edit/${user.memberid}.html">
+				<td class="nowrap">${user.role.getRolename()}</td>
+				<td align="center"><a
+					href="${pageContext.request.contextPath}/Admin/User/edit/${user.memberid}.html">
 						<s:message code="label.user.edit" />
 				</a></td>
-				<td><a class="btn btn-warning" href="${pageContext.request.contextPath}/Admin/User/delete/${user.memberid}.html">
+				<td><a
+					href="${pageContext.request.contextPath}/Admin/User/delete/${user.memberid}.html">
 						<s:message code="label.user.delete" />
 				</a></td>
 			</tr>
 		</c:forEach>
 	</table>
 </c:if>
-</body>
+

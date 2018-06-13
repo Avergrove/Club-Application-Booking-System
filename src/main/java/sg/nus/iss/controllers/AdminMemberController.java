@@ -54,8 +54,6 @@ public class AdminMemberController {
 	public ModelAndView newMemberPage() {
 		ModelAndView mav = new ModelAndView("MemberFormNew","user", new User());
 		mav.addObject("rolelist",urole.findAllRoles());
-		System.out.print(urole.findAllRoles());
-		mav.addObject("userservice",us);
 		return mav;
 	}
 

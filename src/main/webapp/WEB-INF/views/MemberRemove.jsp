@@ -4,11 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+<link href="<c:url value='/styles/style.css'/>" rel="stylesheet"
+	type="text/css" />
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <title>Change Member Active Status(s)</title>
 <body>
-	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 	<form:form id="deleteform" method="POST" modelAttribute="user"
 		action="${pageContext.request.contextPath}/Admin/User/delete/${user.memberid}.html">
 
@@ -89,13 +91,18 @@
 
 				<tr>
 					<td><s:message code="label.user.status" /></td>
-					<td><form:input path="status" /> <form:errors path="status"
-							cssStyle="color: red;" /></td>
+					<td><form:select path="status" required="true">
+						<form:option value="Active" label="Active"/>
+						<form:option value="InActive" label="InActive"/>
+					</form:select>
+					 <form:errors path="status"	cssStyle="color: red;" /></td>
 				</tr>
-
+				
 				<tr>
-					<td><s:message code="label.user.role" /></td>
-					<td><form:input id="editrole" path="roleid" readonly="true"/>!<form:errors path="roleid" cssStyle="color: red;" /></td>
+				<td><s:message code="label.user.role" /></td>
+					<td><form:input id="editrole" path="roleid" readonly="true"/>!
+					</td>
+				
 				</tr>
 
 				<tr>
@@ -134,6 +141,8 @@
 		{
 			window.history.back();
 		};
+		
+		$("#dd").prop('disabled','disabled');
 		</script>
 </body>
 </html>

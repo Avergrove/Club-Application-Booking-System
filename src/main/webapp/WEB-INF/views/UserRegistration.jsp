@@ -19,7 +19,7 @@
 <body>
 
 	<form:form id="createform" method="POST" modelAttribute="user"
-		action="${pageContext.request.contextPath}/Admin/User/create.html">
+		action="${pageContext.request.contextPath}/register">
 		<center>
 			<table cellpadding=4 cellspacing=2 border=0>
 				<tr>
@@ -77,30 +77,24 @@
 				</tr>
 
 				<tr>
-					<td><s:message code="label.user.joindate" /></td>
-					<td><form:input path="joindate" id="jd" readonly="true"/>! YYYY-MM-DD<form:errors
+<!--  					<td><s:message code="label.user.joindate" /></td> -->
+					<td><form:input path="joindate" id="jd" readonly="true" type="hidden"/><form:errors
 							path="joindate" cssStyle="color: red;" /></td>
 				</tr>
 
 				<tr>
-					<td><s:message code="label.user.expirydate" /></td>
-					<td><form:input path="expirydate" id="jed" readonly="true"/>! YYYY-MM-DD<form:errors
+		<!--  		<td><s:message code="label.user.expirydate" /></td> -->	
+					<td><form:input path="expirydate" id="jed" readonly="true" type="hidden"/><form:errors
 							path="expirydate" cssStyle="color: red;" /></td>
 				</tr>
 
 				<tr>
-					<td><s:message code="label.user.status" /></td>
-					<td><form:input path="status" required="true" value="Active" readonly = "true"/>!
+					<td><form:input path="status" required="true" value="Active" type="hidden"/>
 					 <form:errors path="status"	cssStyle="color: red;" /></td>
 				</tr>
 
 				<tr>
-					<td><s:message code="label.user.role" /></td>
-					<td><form:select id="rolelist" path="roleid" name="rl" >
-							<c:forEach var="roles" items="${rolelist}">
-							<option value="${roles.roleId}" label="${roles.rolename}" />
-							</c:forEach>
-						</form:select>
+					<td><form:input path="roleid" value="1" type="hidden"/>
 					<form:errors path="role" cssStyle="color: red;" /></td>
 				</tr>
 				
@@ -112,8 +106,9 @@
 			</table>
 		</center>
 	</form:form>
-	<Label>*required fields</Label><br/>
-	<Label>! readonly fields</Label>
+	<Label>*required fields</Label>
+	<br/>
+	<Label>! read only fields </Label>
 	<div>
 	<!-- <input id ="BirthDate" type="text">  -->
 	</div>

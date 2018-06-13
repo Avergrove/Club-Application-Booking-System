@@ -1,34 +1,30 @@
 package sg.nus.iss.controllers;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
-import javax.management.relation.Role;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
-import org.hibernate.Session;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.nus.iss.model.Booking;
 import sg.nus.iss.model.User;
-import sg.nus.iss.model.Userrole;
 import sg.nus.iss.services.BookingService;
-import sg.nus.iss.services.FacilityService;
 import sg.nus.iss.services.UserService;
-import sg.nus.iss.validators.UserValidator;
-
+import sg.nus.iss.services.UserroleService;
+import sg.nus.iss.validators.MemberValidator;
+@RequestMapping(value = "/")
 @Controller
 public class UserController {
 
@@ -36,22 +32,59 @@ public class UserController {
 	private BookingService bService;
 	
 	@Autowired
+	private UserroleService urole;
+	
+	@Autowired
 	private UserService uService;
+	
+	@Autowired
+	private MemberValidator mv;
+	
+	@InitBinder("user")
+	private void initUserBinder(WebDataBinder binder) {
+		binder.addValidators(mv);
+	}
 	
 	// Shows the registration page
 	@RequestMapping(value ="/register", method = RequestMethod.GET)
-	public ModelAndView showRegistrationForm(Model model) {
-		return new ModelAndView("user-register");
+	public ModelAndView showRegistrationForm() {
+		ModelAndView mav = new ModelAndView("UserRegistration","user", new User());
+		mav.addObject("rolelist",urole.findAllRoles());
+		return mav;
 	}
 	
 	// Check's user's submission, and register if valid.
-	@RequestMapping(value = "/register-authentication", method = RequestMethod.POST)
-	public ModelAndView registerUser(@ModelAttribute("user") User user, BindingResult result) {
-		return null;
-	}		
-	
-	
-	
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView newMemberPage(@ModelAttribute @Valid User user, BindingResult result,
+			final RedirectAttributes redirectAttributes) {
+		if (result.hasErrors())
+			return new ModelAndView("UserRegistration").addObject("rolelist",urole.findAllRoles());
+		
+		ModelAndView mav = new ModelAndView();
+		try
+		{
+			uService.createUser(user);
+		}
+		catch (Exception e) {
+			
+			Throwable t = e.getCause();
+			while (t!=null && !(t instanceof ConstraintViolationException))
+				{ t = t.getCause(); }
+			if(t instanceof ConstraintViolationException)
+			{
+				ModelAndView mv = new ModelAndView("UserRegistration").addObject("rolelist",urole.findAllRoles());
+				String s = "UserID already exists";
+				mv.addObject("userconstraintmessage", s);
+				return mv;
+			}
+		}
+		
+		String message = "New Member " + user.getMemberid() + " was successfully created.";
+		redirectAttributes.addFlashAttribute("message", message);
+		mav.setViewName("redirect:/");
+		return mav;		
+	}
+		
 	// Shows the login page
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView showLoginForm(Model model) {
