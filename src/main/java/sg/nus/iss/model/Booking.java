@@ -20,22 +20,28 @@ public class Booking {
 	@Id
 	@Column(name = "bookingid")
 	private int bookingId;
+	
 	@ManyToOne
 	@JoinColumn(name = "memberid")
 	private User usr;
+	
 	@ManyToOne
 	@JoinColumn(name = "facilityid")
 	private Facility fac;
+	
 	@Column(name = "dateofbooking")
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date bookingdate;
+	
 	@Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name = "bookstartdate")
 	private Date startdate;
+	
 	@Column(name = "bookingcomments")
 	private String comments;
+	
 	@Column(name = "bookingstatus")
 	private String bookstatus;
 	

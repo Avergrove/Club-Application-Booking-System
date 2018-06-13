@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+
+body{
+	background-image: url("https://placeimg.com/640/480/nature");
+	background-size: cover;
+}
+
+.flexbox{
+	
+	margin-top: 25vh;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	height: 100%;
+
+}
+
+.flexbox-item{
+	flex-shrink: 1;
+}

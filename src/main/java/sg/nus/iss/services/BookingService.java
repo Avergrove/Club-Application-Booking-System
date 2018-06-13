@@ -10,5 +10,9 @@ public interface BookingService {
 	
 	ArrayList<Booking> findAllBooking();
 	
+	ArrayList<Booking> findBookingByMemberId(int memberId);
 	
+	Booking findBookingByBookingId(int bookingId);
+	
+	public Booking updateBooking(Booking b);
 }

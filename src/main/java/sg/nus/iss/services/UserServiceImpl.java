@@ -39,4 +39,14 @@ public class UserServiceImpl implements UserService {
 		return repos.saveAndFlush(user);
 	}
 
+	@Override
+	public User findUserByUserName(String username) {
+		return repos.findUserByUsername(username);
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		return repos.findUserByEmail(email);
+	}
+
 }

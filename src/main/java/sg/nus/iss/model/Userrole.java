@@ -15,6 +15,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "userrole")
 public class Userrole {
+	
+	public static final int MEMBER = 1;
+	public static final int ADMIN = 2;
+	
 	@Id
 	@Column(name = "roleid")
 	private int roleId;

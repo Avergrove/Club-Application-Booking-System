@@ -16,4 +16,6 @@ public interface FacilityService {
 	void removeCourse(Facility facility);
 
 	ArrayList<Facility> findFacilitiesByCategory(int categoryId);
+	
+	ArrayList<Facility> findFacilitiesByFacilityName(String facilityName);
 }

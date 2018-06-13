@@ -67,6 +67,7 @@ public class User {
 	@Basic(optional = false)
 	@Column(name = "status")
 	private String Status;
+	
 	@Transient
 	@OneToMany
 	@JoinColumn(name = "memberid")

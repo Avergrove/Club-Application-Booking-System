@@ -1,0 +1,48 @@
+@charset "ISO-8859-1";
+
+body{
+	background-image: url("https://placeimg.com/640/480/nature");
+	background-size: cover;
+}
+
+.container-wrapper{
+	margin-top: 5vh;
+	background-color: rgba(200,200,200, 0.3);
+	padding-top: 2.5vh;
+	padding-left: 5vw;
+	padding-right: 5vw;
+	padding-bottom: 5vh;
+	margin-bottom: 5vh;
+	border-radius: 5%;
+}
+
+.row-container{
+}
+
+
+
+.filter-section{
+	
+	border-radius: 5%;
+	background-color: rgba(220,220,220, 0.5);
+	height: 80vh;
+}
+
+.filter-textbox{
+	width: 80%;
+}
+
+.card{
+	margin-bottom: 5vh;
+}
+
+.card > .jumbotron{
+
+}
+
+.card-jumbotron-image{
+	background-image: url("https://placeimg.com/1337/480/arch");
+	background-size: cover;
+}
+
+

@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+
+body{
+	background-image: url("https://placeimg.com/640/480/nature");
+	background-size: cover;
+}
+
+.container-wrapper{
+	margin-top: 5vh;
+	background-color: rgba(250,250,250, 0.9);
+	padding-top: 2.5vh;
+	padding-left: 5vw;
+	padding-right: 5vw;
+	padding-bottom: 5vh;
+	margin-bottom: 5vh;
+	border-radius: 2.5%;
+}
+
+.container-details{
+	background-color: rgba(250,250,250);
+}
+
+.jumbotron{
+    background-image: url('https://placeimg.com/640/480/arch');
+	background-size: cover;
+	height: 50vh;
+}
+
+#book-button{
+	vertical-align: middle;
+	height: 20vh;
+	width: 10vw;
+	font-size: 20px;
+}

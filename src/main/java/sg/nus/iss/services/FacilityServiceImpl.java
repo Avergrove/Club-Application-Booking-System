@@ -53,5 +53,9 @@ public class FacilityServiceImpl implements FacilityService {
 	public ArrayList<Facility> findFacilitiesByCategory(int categoryId) {
 		return facilityRepository.findFacilitiesByCategoryId(categoryId);
 	}
-	
+
+	@Override
+	public ArrayList<Facility> findFacilitiesByFacilityName(String facilityName) {
+		return facilityRepository.findFacilitiesByFacilityName(facilityName);
+	}
 }
