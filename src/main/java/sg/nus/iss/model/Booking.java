@@ -17,6 +17,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "booking")
 public class Booking {
 	
+	public static final String CONFIRMED = "CONFIRMED";
+	public static final String CANCELLED = "CANCELLED";
+	public static final String MAINTENANCE = "MAINTENANCE";	
+	
 	@Id
 	@Column(name = "bookingid")
 	private int bookingId;
@@ -26,7 +30,7 @@ public class Booking {
 	private User usr;
 	
 	@ManyToOne
-	@JoinColumn(name = "facilityid")
+	@JoinColumn(name = "facilityid", insertable=false, updatable=false)
 	private Facility fac;
 	
 	@Column(name = "dateofbooking")
@@ -44,6 +48,9 @@ public class Booking {
 	
 	@Column(name = "bookingstatus")
 	private String bookstatus;
+	
+	@Column(name="facilityid")
+	private Integer facilityId;
 	
 	//getters & setters
 	
@@ -91,6 +98,12 @@ public class Booking {
 		this.bookstatus = bookstatus;
 	}
 	
+	public Integer getFacilityId() {
+		return facilityId;
+	}
+	public void setFacilityId(Integer facilityId) {
+		this.facilityId = facilityId;
+	}
 	//constructor using fields
 	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, String comments, String bookstatus) {
 		super();
@@ -117,6 +130,17 @@ public class Booking {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Booking(int bookingId, User usr, Date bookingdate, Date startdate, String comments, String bookstatus,
+			Integer facilityId) {
+		super();
+		this.bookingId = bookingId;
+		this.usr = usr;
+		this.bookingdate = bookingdate;
+		this.startdate = startdate;
+		this.comments = comments;
+		this.bookstatus = bookstatus;
+		this.facilityId = facilityId;
+	}
 	
 	
 	

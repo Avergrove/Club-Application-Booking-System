@@ -2,12 +2,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
+
+<head>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>	
+</head>
+
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 
 <h3>User List page ${fn.length(userList)}</h3>
-
-	
 
 <c:if test="${fn:length(userList) gt 0}">
 	<br />
@@ -22,4 +25,4 @@
 		</c:forEach>
 	</table>
 </c:if>
-
+</body>

@@ -6,8 +6,6 @@
 
 
 <head>
-<link href="<c:url value='/styles/style.css'/>" rel="stylesheet"
-	type="text/css" />
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
 	
 </head>

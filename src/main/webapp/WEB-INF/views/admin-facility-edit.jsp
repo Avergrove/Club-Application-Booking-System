@@ -52,7 +52,6 @@
 			<tr>
 				<td><spring:message code="fieldLabel.FacilityCategory" /></td>
 				<td><form:select path="categoryid">
-						<form:option value="0" label="Please select Category" />
 						<form:options items="${categorylist}" itemLabel="categoryname" itemValue="categoryId"/>
 					</form:select></td>
 			</tr>

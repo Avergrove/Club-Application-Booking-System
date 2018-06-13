@@ -33,7 +33,7 @@
 			</div>
 			
 			<div class="col-md-2">
-				<button type="submit" class="btn btn-primary" value="Book now!" id="book-button">Book now!</button>
+				<a class="btn btn-primary" href="/iss/Booking/create?facilityId=${param.facilityId}">Book now!</a>
 			</div>
 		
 						

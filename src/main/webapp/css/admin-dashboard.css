@@ -27,13 +27,14 @@ body{
 }
 
 .flex-item{
+	flex-basis: 0;
 	color: black;
-	max-height: 25vh;
 	background-color: rgba(204, 204, 214, 0.3);
 	vertical-align: middle;
 	text-align: center;
 }
 
-.card-image{
-	height: 10vh;
+.card-item{
+
+	
 }
