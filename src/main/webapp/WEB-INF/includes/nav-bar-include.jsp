@@ -24,7 +24,7 @@
     <ul class="navbar-nav">
   	  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   	  <c:choose>
-      	<c:when test="${empty user}">
+      	<c:when test="${empty sessionScope.user}">
       		<a href="${request.contextPath}/iss/login"><button class="btn btn-outline-primary my-2 my-sm-0">Login</button></a>
        		<a href="${request.contextPath}/iss/register"><button class="btn btn-outline-success my-2 my-sm-0">Register</button></a>
   	  	

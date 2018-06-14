@@ -4,13 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value='/styles/style.css'/>" rel="stylesheet"
-	type="text/css" />
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
+	
 	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
   <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <title>Change Member Active Status(s)</title>
 <body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+	<div class="container container-wrapper">
 	<form:form id="deleteform" method="POST" modelAttribute="user"
 		action="${pageContext.request.contextPath}/Admin/User/delete/${user.memberid}.html">
 
@@ -106,13 +109,14 @@
 				</tr>
 
 				<tr>
-					<td><input type="submit" value="Submit"></td>
-					<td><input type="reset" value="Reset"></td>
-					<td><input type="reset" value="Back" id="dke"></td>
+					<td><input type="submit" value="Submit" class="btn btn-primary"></td>
+					<td><input type="reset" value="Reset" class="btn btn-warning"></td>
+					<td><input type="reset" value="Back" id="dke" class="btn btn-submit"></td>
 				</tr>
 			</table>
 		</center>
 	</form:form>
+	</div>
 	<Label>*required fields</Label><br/>
 	<Label>!!read only fields</Label>
 	

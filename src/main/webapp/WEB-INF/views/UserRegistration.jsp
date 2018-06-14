@@ -9,15 +9,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/user-registration.css"/>"/>
 	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
 </head>
 <title>New Member Creation</title>
-<h1>New Member Creation Form</h1>
-<body>
 
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+
+	<div class="container container-wrapper">
+	<h1>New Member Creation Form</h1>
 	<form:form id="createform" method="POST" modelAttribute="user"
 		action="${pageContext.request.contextPath}/register">
 		<center>
@@ -53,7 +57,7 @@
 
 				<tr>
 					<td><s:message code="label.user.email" /></td>
-					<td><form:input path="email" required="true" /> <form:errors path="email"
+					<td><form:input path="email" required="true" id="mail" onChange="ValidateEmail(email)" /> <form:errors path="email"
 							cssStyle="color: red;" /></td>
 				</tr>
 
@@ -72,7 +76,7 @@
 
 				<tr>
 					<td><s:message code="label.user.password" /></td>
-					<td><form:input path="password" required="true"/> <form:errors
+					<td><form:input path="password" required="true" type="password"/> <form:errors
 							path="password" cssStyle="color: red;" /></td>
 				</tr>
 
@@ -111,6 +115,7 @@
 	<Label>! read only fields </Label>
 	<div>
 	<!-- <input id ="BirthDate" type="text">  -->
+	</div>
 	</div>
 	<script>
 	$(document).ready(function(){
@@ -151,7 +156,27 @@
 		var yep = y + "-" + twoDigitMonth + "-" + fullDate.getDate();
 		$("#jed").val(yep);
 	});
-	
 	</script>
+	
+	<script>
+	function ValidateEmail(inputText)
+	{
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if(inputText.value.match(mailformat))
+	{
+	document.form1.text1.focus();
+	return true;
+	}
+	else
+	{
+	alert("You have entered an invalid email address!");
+	document.form1.text1.focus();
+	return false;
+	}
+	}
+	</script>
+	
+	
+	
 </body>
 </html>

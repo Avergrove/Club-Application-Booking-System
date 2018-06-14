@@ -5,16 +5,20 @@
 <head>
 
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 </head>
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+
+<div class="container container-wrapper">
+	<a href="/iss/Admin/"><h2><i class="fa fa-angle-double-left "></i> Return to Admin Dashboard</h2></a>
 <h3>Facility List page</h3>
 
-<a href="${pageContext.request.contextPath}/Admin/Facility/create">Add
-	Facility</a>
+<a href="${pageContext.request.contextPath}/Admin/Facility/create">Add Facility</a>
 <c:if test="${fn:length(facilitylist) gt 0}">
-	<table style="cellspacing: 2; cellpadding: 2; border: 1;">
+	<table class="table table-striped">
 		<thead>
 			<tr class="listHeading">
 				<th><spring:message code="fieldLabel.FacilityId" /></th>
@@ -46,4 +50,5 @@
 		</tbody>
 	</table>
 </c:if>
+</div>
 </body>

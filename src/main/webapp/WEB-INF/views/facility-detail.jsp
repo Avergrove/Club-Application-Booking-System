@@ -33,7 +33,20 @@
 			</div>
 			
 			<div class="col-md-2">
-				<a class="btn btn-primary" href="/iss/Booking/create?facilityId=${param.facilityId}">Book now!</a>
+			
+			<c:choose>
+				
+				<%-- Prompt the user to login if they havent login, but wants to book --%>
+				<c:when test="${empty sessionScope.user}">
+					<a class="btn btn-primary" href="http://localhost:8080/iss/login">Login to book!</a>
+				</c:when>
+			
+				<%-- If user has logged in, bring the user to the booking page --%>
+ 	  			<c:otherwise>
+					<a class="btn btn-primary" href="/iss/Booking/create?facilityId=${param.facilityId}">Book now!</a>	
+  	  			</c:otherwise>			
+			</c:choose>
+			
 			</div>
 		
 						

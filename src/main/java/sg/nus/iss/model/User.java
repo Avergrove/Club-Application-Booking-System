@@ -77,7 +77,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Transient
+
 	@ManyToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="roleid", insertable=false, updatable=false)
 	private Userrole role;

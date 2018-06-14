@@ -3,27 +3,24 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
+
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
-	
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 </head>
 <html>
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+	
 
-<center>
-<h3>Role List page ${fn.length(rolelist)}</h3>
-<br/>
-<a href="${pageContext.request.contextPath}/Admin/Role/create">Add
-	Role</a>
-	<br/>
+<div class="container container-wrapper">
+	<a href="/iss/Admin/"><h2><i class="fa fa-angle-double-left "></i> Return to admin dashboard</h2></a>
+	<h3>Role List page ${fn.length(rolelist)}</h3>
+	
+	<a class="btn btn-primary" href="${pageContext.request.contextPath}/Admin/Role/create">Add Role</a>
+	
+	<c:if test="${fn:length(rolelist) gt 0}">
 
-
-<c:if test="${fn:length(rolelist) gt 0}">
-	<br />
-	<br />
-	<table class="borderAll">
+	<table class="table table-striped borderAll">
 	<tr>
 			<th>Index</th>
 			<th>Role Id</th>
@@ -35,11 +32,10 @@
 				<td class="nowrap">${status.index+1}</td>
 				<td class="nowrap">${roles.roleId}</td>
 				<td class="nowrap">${roles.rolename}</td>
-			<td align="center"><a
-					href="${pageContext.request.contextPath}/Admin/Role/edit/${roles.roleId}.html">
-						Edit
-				</a></td>
+			<td align="center">
+				<a class="btn btn-success" href="${pageContext.request.contextPath}/Admin/Role/edit/${roles.roleId}.html"> Edit </a></td>
 				<td><a
+					class="btn btn-warning"
 					href="${pageContext.request.contextPath}/Admin/Role/delete/${roles.roleId}.html">
 					Delete</a></td>
 			</tr>
@@ -47,16 +43,7 @@
 		</c:forEach>
 	</table>
 </c:if>
-<br/>
-<br/>
-<input type="button" value="Back" id="redirectbutton">
-</center>
+
+</div>
 </body>
-<script>
-	
-	    document.getElementById("redirectbutton").onclick = function () {
-			alert("You will be returning to previous page");
-	    	window.history.back();
-	};
-</script>
 </html>

@@ -3,13 +3,12 @@ package sg.nus.iss.controllers;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -23,15 +22,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import sg.nus.iss.model.Booking;
 import sg.nus.iss.model.Category;
 import sg.nus.iss.model.Facility;
+import sg.nus.iss.model.User;
 import sg.nus.iss.services.BookingService;
 import sg.nus.iss.services.CategoryService;
 import sg.nus.iss.services.FacilityService;
+import sg.nus.iss.validators.UserBookingValidator;
 
 @RequestMapping(value="/Booking")
 @Controller
@@ -47,7 +49,7 @@ public class UserBookingController {
 	private CategoryService cService;
 	
 	//@Autowired
-	//private BookingValidator bValidator;
+	//private UserBookingValidator bValidator;
 	
 	@InitBinder("booking")
 	private void initCourseBinder(WebDataBinder binder) {
@@ -59,7 +61,7 @@ public class UserBookingController {
 	}
 
 	
-	@RequestMapping(value="/history")
+	/*@RequestMapping(value="/history")
 	public ModelAndView userBookingHistory(HttpSession session) {
 		UserSession us = (UserSession) session.getAttribute("user");
 		ModelAndView mav = new ModelAndView("login");
@@ -69,7 +71,7 @@ public class UserBookingController {
 			return mav;
 		}
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView newBookingPage() {
@@ -96,20 +98,27 @@ public class UserBookingController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public ModelAndView createNewBooking(@ModelAttribute @Valid Booking booking, BindingResult result,
-			final RedirectAttributes redirectAttributes, HttpSession session) throws ParseException {
+			final RedirectAttributes redirectAttributes, HttpSession session, HttpServletRequest request) throws ParseException {
 
-		if (result.hasErrors())
-			return new ModelAndView("booking-new");
+		if (result.hasErrors()) {
+			redirectAttributes.addFlashAttribute("message", "Booking unsuccessful");
+			Map<Integer, String> facilities = new LinkedHashMap<Integer,String>();
+			for (Facility f: fService.findAllFacility()) {
+				facilities.put(f.getFacilityId(),f.getFacilityname());
+			}
+			return new ModelAndView("/booking-new").addObject("facilitylist",facilities);
+		}
 
 		ModelAndView mav = new ModelAndView();
 		String message = "New booking " + booking.getBookingId() + " was successfully created.";
-		UserSession us = (UserSession) session.getAttribute("user");
-		booking.setUsr(us.getUser());
+		User u=(User) request.getSession().getAttribute("user");
+		booking.setUsr(u);
 		booking.setBookstatus(booking.CONFIRMED);
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar calobj = Calendar.getInstance();
 		String dd = df.format(calobj.getTime());	
 		Date ddd= (Date) new SimpleDateFormat("yyyy-MM-dd").parse(dd);
+		booking.setStartdate(((Date)new SimpleDateFormat("yyyy-MM-dd").parse("2018-06-28")));
 		booking.setBookingdate(ddd);
 		bService.CreateBooking(booking);
 		mav.setViewName("redirect:/Booking/create");
@@ -119,23 +128,28 @@ public class UserBookingController {
 	
 	@RequestMapping(value="/create/{fid}", method=RequestMethod.GET)
 	public ModelAndView GenerateFacilityPage(@PathVariable Integer fid) {
-		ModelAndView mav = new ModelAndView("redirect:/Booking/create");
-		Map<Integer, String> facilities = new LinkedHashMap<Integer,String>();
+		ModelAndView mav = new ModelAndView("booking-new");
+		Map<Integer, String> facility = new LinkedHashMap<Integer,String>();
 		Facility f = fService.findFacility(fid);
-		facilities.put(f.getFacilityId(),f.getFacilityname());
+		facility.put(f.getFacilityId(),f.getFacilityname());
+		Map<Integer, String> facilities = new LinkedHashMap<Integer,String>();
+		for (Facility fa: fService.findAllFacility()) {
+			facilities.put(fa.getFacilityId(),fa.getFacilityname());
+		}
 		Map<Integer, String> category = new LinkedHashMap<Integer,String>();
 		category.put(f.getCategoryid(), f.getCategory().getCategoryname());
-		mav.addObject("bookedDates", bService.findCurrentFutureBookingsByFID(fid));
-		mav.addObject("fCategory", category);
-		mav.addObject("fFacility",facilities);
+		//mav.addObject("bookedDates", bService.findCurrentFutureBookingsByFID(fid));
+		mav.addObject("categorylist", category);
+		mav.addObject("facilitylist",facilities);
+		mav.addObject("facility",facility);
 		return mav;
 		
 	}
 	
-	
+/*	
 	@RequestMapping(value = "/history/cancel/{id}", method = RequestMethod.GET)
 	public ModelAndView deleteCourse(@PathVariable Integer id, final RedirectAttributes redirectAttributes,
-			HttpSession session) /*throws BookingNotFound*/ {
+			HttpSession session) /*throws BookingNotFound {
 
 		ModelAndView mav = new ModelAndView("redirect:/Booking/history");
 		Booking booking = bService.findBooking(id);
@@ -145,6 +159,12 @@ public class UserBookingController {
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}
+*/
 
+	@RequestMapping(value="/loadState/{id}", method=RequestMethod.GET)
+	public 	@ResponseBody String loadState(@PathVariable("id") int id) {
+		return "abc";
+		
+	}
 	
 }

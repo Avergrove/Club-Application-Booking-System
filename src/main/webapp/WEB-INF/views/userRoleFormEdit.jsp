@@ -7,11 +7,13 @@
 
 <head>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 	
 </head>
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
-
+<div class="container container-wrapper">
+	<a href="/iss/Admin/Role/list"><h2><i class="fa fa-angle-double-left "></i> Return to Role list</h2></a>	
 <form:form method="POST" modelAttribute="userrole"
 	action="${pageContext.request.contextPath}/Admin/Role/edit/${userrole.roleId}.html" onsubmit=" return validate()">
 		<center>
@@ -38,7 +40,7 @@
 	
 	</form:form>
 
-	
+</div>	
 </body>
 <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"

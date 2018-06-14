@@ -4,14 +4,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 	
 </head>
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 
+<div class="container container-wrapper">
+	<a href="/iss/Admin/Role/list"><h2><i class="fa fa-angle-double-left "></i> Return to Role list</h2></a>	
 <form:form   name="myForm" method="POST" modelAttribute="userrole" action="${pageContext.request.contextPath}/Admin/Role/create.html" onsubmit="return validate()">
 	
 		<center>
@@ -35,6 +36,7 @@
 		</center>
 	
 	</form:form>
+</div>
 </body>
 
 <script>

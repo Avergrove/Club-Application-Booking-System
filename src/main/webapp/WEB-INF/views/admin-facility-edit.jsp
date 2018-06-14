@@ -2,15 +2,20 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <head>
-
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 </head>
+
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
-<h3>Edit Facility page</h3>
+
+<div class="container container-wrapper">
+<a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>	
+<h3>Facility Edit page</h3>
 
 <form:form method="POST" modelAttribute="facility"
 	action="${pageContext.request.contextPath}/Admin/Facility/edit/${facility.facilityId}.html">
@@ -64,4 +69,5 @@
 		</tbody>
 	</table>
 </form:form>
+</div>
 </body>

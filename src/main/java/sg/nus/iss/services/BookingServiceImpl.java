@@ -20,8 +20,7 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public Booking CreateBooking(Booking bk) {
-		// TODO Auto-generated method stub
-		return null;
+		return brepos.saveAndFlush(bk);
 	}
 
 	@Override

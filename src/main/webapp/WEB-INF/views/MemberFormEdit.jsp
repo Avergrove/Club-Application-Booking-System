@@ -117,25 +117,7 @@
 	<Label>*required fields</Label>
 	<br />
 	<Label>!!read only fields</Label>
-	<form:form id="roleform">
-
-		<center>
-			<table cellpadding=4 cellspacing=2 border=0>
-				<tr>
-					<th width="45%">RoleId</th>
-					<th width="55%">RoleName</th>
-				</tr>
-				<tr>
-				<c:forEach var="roles" items="${rolelist}">
-					<tr>
-					<td>${roles.roleId}</td>
-					<td>${roles.rolename}</td>
-					</tr>
-					</c:forEach>
-				</tr>
-				</table>
-				</center>
-	</form:form>
+	
 
 	<script>
 		document.getElementById("bke").onclick = function() {

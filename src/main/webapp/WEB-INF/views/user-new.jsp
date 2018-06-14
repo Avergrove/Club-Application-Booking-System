@@ -9,9 +9,9 @@
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
-<h3>New User page</h3>
-<form:form method="POST" commandName="user"
-	action="${pageContext.request.contextPath}/user/create.html">
+	<div>
+	<h3>New User page</h3>
+	<form:form method="POST" commandName="user" action="${pageContext.request.contextPath}/user/create.html">
 	<table>
 		<tbody>
 			<tr>
@@ -38,4 +38,6 @@
 		</tbody>
 	</table>
 </form:form>
+
+	</div>
 </body>

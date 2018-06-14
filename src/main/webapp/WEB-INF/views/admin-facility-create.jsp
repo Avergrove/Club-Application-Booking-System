@@ -6,12 +6,15 @@
 
 <head>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 </head>
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
-<h3>New Facility page</h3>
-<form:form method="POST" modelAttribute="facility"
+	<div class="container container-wrapper">
+	<a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>		
+	<h3>New Facility page</h3>
+	<form:form method="POST" modelAttribute="facility"
 	action="${pageContext.request.contextPath}/Admin/Facility/create.html">
 	<table>
 		<tbody>			
@@ -50,11 +53,11 @@
 					</form:select></td>
 			</tr>
 			<td><input type="submit" value="Create" /></td>
-			<td></td>
-			<td></td>
+
 			</tr>
 		</tbody>
 	</table>
-</form:form>
+	</form:form>
+	</div>
 </body>
 

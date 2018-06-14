@@ -9,11 +9,15 @@
 <html>
 <head>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 </head>
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+
+<div class="container container-wrapper">
+<a href="/iss/Admin/Category/list"><h2><i class="fa fa-angle-double-left "></i> Return to Category Listing</h2></a>
 <h3>Edit Category page</h3>
 
 <form:form method="POST" modelAttribute="category"
@@ -41,4 +45,5 @@
 		</tbody>
 	</table>
 </form:form>
+</div>
 </body>

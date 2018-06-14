@@ -2,12 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link href="<c:url value='/css/style.css'/>" rel="stylesheet"
-	type="text/css" />
-<title>Member List</title>
+<head>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>	
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
+	<title>Member List</title>
+</head>
 
-<a href="${pageContext.request.contextPath}/Admin/User/create">Add
-	Member</a>
+<body>
+	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
+	<div class="container container-wrapper">
+	<a href="/iss/Admin/"><h2><i class="fa fa-angle-double-left "></i> Return to Admin Dashboard</h2></a>	
+	
+	
+	<a class="btn btn-success" href="${pageContext.request.contextPath}/Admin/User/create">Add Member</a>
 
 <c:if test="${fn:length(userList) gt 0}">
 	<br />
@@ -57,4 +64,6 @@
 		</c:forEach>
 	</table>
 </c:if>
+</div>
 
+</body>
