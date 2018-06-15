@@ -52,11 +52,11 @@
 				<td class="nowrap">${user.status}</td>
 				<td class="nowrap">${user.userid}</td>
 				<td class="nowrap">${user.role.getRolename()}</td>
-				<td align="center"><a
+				<td align="center"><a class="btn btn-success"
 					href="${pageContext.request.contextPath}/Admin/User/edit/${user.memberid}.html">
 						<s:message code="label.user.edit" />
 				</a></td>
-				<td><a
+				<td><a class="btn btn-primary"
 					href="${pageContext.request.contextPath}/Admin/User/delete/${user.memberid}.html">
 						<s:message code="label.user.delete" />
 				</a></td>

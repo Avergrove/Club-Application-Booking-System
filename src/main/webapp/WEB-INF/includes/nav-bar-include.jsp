@@ -13,7 +13,7 @@
         <a class="nav-link" href="${request.contextPath}/iss/Facility/list">Browse</a>
       </li>
 
-      <form class="form-inline my-2 my-lg-0" action = "Facility/list" method = "GET">
+      <form class="form-inline my-2 my-lg-0" action = "${request.contextPath}/iss/Facility/list" method = "GET">
       	<input class="form-control mr-sm-2" type = "text" name = "searchParam" placeholder="Search for a facility" aria-label="Search">
       	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
    	  </form>

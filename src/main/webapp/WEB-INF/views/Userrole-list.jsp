@@ -34,10 +34,10 @@
 				<td class="nowrap">${roles.rolename}</td>
 			<td align="center">
 				<a class="btn btn-success" href="${pageContext.request.contextPath}/Admin/Role/edit/${roles.roleId}.html"> Edit </a></td>
-				<td><a
+				<!--  <td><a
 					class="btn btn-warning"
 					href="${pageContext.request.contextPath}/Admin/Role/delete/${roles.roleId}.html">
-					Delete</a></td>
+					Delete</a></td>-->
 			</tr>
 			</tr>
 		</c:forEach>

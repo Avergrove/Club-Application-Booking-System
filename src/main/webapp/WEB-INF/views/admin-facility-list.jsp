@@ -16,7 +16,7 @@
 	<a href="/iss/Admin/"><h2><i class="fa fa-angle-double-left "></i> Return to Admin Dashboard</h2></a>
 <h3>Facility List page</h3>
 
-<a href="${pageContext.request.contextPath}/Admin/Facility/create">Add Facility</a>
+<a class="btn btn-primary" href="${pageContext.request.contextPath}/Admin/Facility/create">Add Facility</a>
 <c:if test="${fn:length(facilitylist) gt 0}">
 	<table class="table table-striped">
 		<thead>
@@ -41,7 +41,7 @@
 					<td>${Facility.facilitystatus}</td>
 					<td>${Facility.category.getCategoryname()}</td>
 
-					<td align="center"><a
+					<td align="center"><a class="btn btn-primary"
 						href="${pageContext.request.contextPath}/Admin/Facility/edit/${Facility.facilityId}.html"><spring:message
 								code="caption.edit" /></a></td>
 				</tr>

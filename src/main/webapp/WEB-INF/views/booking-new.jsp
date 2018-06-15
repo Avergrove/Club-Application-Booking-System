@@ -28,6 +28,7 @@
 
 <jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <div class="container container-wrapper">
+	<a href="/iss/Facility/list/"><h2><i class="fa fa-angle-double-left "></i> Return to Browse</h2></a>
 <h1>Booking</h1>
 <br>
 <br>
@@ -81,9 +82,9 @@
     <tr>
     </tr>
     <tr>
-        <td><input type="submit" value="Submit"></td>
-     	<td><input type="reset" id ="new" value="Reset" alt=""></td>
-		<td><input type="reset" value="Back" id="cdke" alt=""></td>
+        <td><input class="btn btn-primary" type="submit" value="Submit"></td>
+     	<td><input class="btn btn-warning" type="reset" id ="new" value="Reset" alt=""></td>
+		<td><input class="btn btn-submit" type="reset" value="Back" id="cdke" alt=""></td>
     </tr>
     <tr><td><form:errors path="usr" cssStyle="color: red;" /></td></tr>
 </table>

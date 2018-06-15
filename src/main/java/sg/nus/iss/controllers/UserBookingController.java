@@ -118,10 +118,10 @@ public class UserBookingController {
 		Calendar calobj = Calendar.getInstance();
 		String dd = df.format(calobj.getTime());	
 		Date ddd= (Date) new SimpleDateFormat("yyyy-MM-dd").parse(dd);
-		booking.setStartdate(((Date)new SimpleDateFormat("yyyy-MM-dd").parse("2018-06-28")));
+		//booking.setStartdate(((Date)new SimpleDateFormat("yyyy-MM-dd").parse("2018-06-28")));
 		booking.setBookingdate(ddd);
 		bService.CreateBooking(booking);
-		mav.setViewName("redirect:/Booking/create");
+		mav.setViewName(String.format("redirect:/Booking/viewHistory?memberId=%s", u.getMemberid()));
 		redirectAttributes.addFlashAttribute("message", message);
 		return mav;
 	}

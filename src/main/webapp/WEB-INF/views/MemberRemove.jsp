@@ -116,7 +116,7 @@
 			</table>
 		</center>
 	</form:form>
-	</div>
+	
 	<Label>*required fields</Label><br/>
 	<Label>!!read only fields</Label>
 	
@@ -139,7 +139,7 @@
 				</table>
 				</center>
 	</form:form>
-	
+	</div>
 	<script>		
 		document.getElementById("dke").onclick = function()
 		{

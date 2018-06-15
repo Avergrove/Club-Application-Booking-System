@@ -21,7 +21,7 @@
 
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 	<div class="container container-wrapper">
-	<a href="/iss/Admin/User/list"><h2><i class="fa fa-angle-double-left "></i> Return to User List</h2></a>
+	<!-- <a href="/iss/Admin/User/list"><h2><i class="fa fa-angle-double-left "></i> Return to User List</h2></a>-->
 	<h1>Admin- Member Creation Form</h1>
 
 	<form:form id="createform" method="POST" modelAttribute="user"

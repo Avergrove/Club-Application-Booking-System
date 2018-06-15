@@ -8,13 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/head-include.jsp"/>
+	<link rel="stylesheet" href="<c:url value="/css/container-wrapper-form.css"/>"/>
 	
 </head>
 
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 
-	<div class="container">
+	<div class="container container-wrapper">
 	
 	<a href="/iss/Admin/Booking/list"><h2><i class="fa fa-angle-double-left "></i> Return to Booking listing</h2></a>	
 	
@@ -27,7 +28,7 @@
 			<div><span>Start Date: </span><c:out value="${booking.startdate}"></c:out></div>
 			<div><span>Comment: </span><input type="text" value="${booking.comments}" name="comments"/></div>
 			<div><span>Booking Status: </span><input type="text" value="${booking.bookstatus}" name="bookstatus"/></div>
-			<input class="btn btn-submit" type="submit" value="submit"/>
+			<input class="btn btn-success" type="submit" value="submit"/>
 		</form>
 		
 	</div>
