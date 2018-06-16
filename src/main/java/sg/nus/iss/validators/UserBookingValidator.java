@@ -16,35 +16,34 @@ import sg.nus.iss.services.BookingService;
 public class UserBookingValidator implements Validator {
 	@Autowired
 	private BookingService bService;
-	
+
 	@Override
-	public boolean supports(Class<?> arg0) {
-		return Booking.class.isAssignableFrom(arg0);
+	public boolean supports(Class<?> clazz) {
+		return Booking.class.isAssignableFrom(clazz);
 	}
 
 	@Override
-	public void validate(Object arg0, Errors arg1) {
-		Booking booking = (Booking) arg0;
-		 if(booking.getStartdate()!=null && booking.getFacilityId()!=null) {
-			DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String date1= sdf.format(booking.getStartdate());
-			ArrayList<Booking> bookings = bService.findBookedDatesByStatusNotEqual("CANCELLED", booking.getFacilityId());
-			for(Booking b:bookings) {
-				String date2 = sdf.format(b.getStartdate());
-				if(date1.equals(date2)){
-					arg1.reject("startdate", "date is not available");
-					arg1.rejectValue("startdate", "error.booking.date.notavailable", "date is not available");
+	public void validate(Object arg1, Errors errors) {
+		Booking booking = (Booking) arg1;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if ((booking.getFacilityId()!=null && booking.getStartdate()!=null)){
+			ArrayList<Booking> allbookings = new ArrayList<Booking>();
+			for(Booking b:bService.findCurrentFutureBookingsByFID(booking.getFacilityId())) {
+				if(booking.getFacilityId()==b.getFacilityId()&&dateFormat.format((booking.getStartdate())).equals(dateFormat.format(b.getStartdate()))) {
+					errors.reject("startdate", "Invalid date");
+					errors.rejectValue("startdate", "errors.date", "Invalid date");
 					break;
 				}
 			}
+	
 		}
-		
-		ValidationUtils.rejectIfEmpty(arg1, "bookingId", "error.booking.bookingId.empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "facilityId", "error.booking.facilityId.empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "startdate", "error.booking.date.empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(arg1, "usr", "error.booking.userid.empty");
+				
+		ValidationUtils.rejectIfEmpty(errors, "bookingId", "error.booking.bookingId.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "facilityId", "error.booking.facilityId.empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startdate", "error.booking.date.empty");
 	    System.out.println(booking.toString());
-
+	    
 	}
 
 }

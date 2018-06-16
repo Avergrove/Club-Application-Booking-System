@@ -29,8 +29,11 @@ public class Booking {
 	private int bookingId;
 	
 	@ManyToOne
-	@JoinColumn(name = "memberid")
+	@JoinColumn(name = "memberid", insertable=false, updatable=false)
 	private User usr;
+	
+	@Column(name="memberid")
+	private Integer memberId;
 	
 	@ManyToOne
 	@JoinColumn(name = "facilityid", insertable=false, updatable=false)
@@ -107,6 +110,12 @@ public class Booking {
 	public void setFacilityId(Integer facilityId) {
 		this.facilityId = facilityId;
 	}
+	public Integer getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
 	//constructor using fields
 	public Booking(User usr, Facility fac, Date bookingdate, Date startdate, String comments, String bookstatus) {
 		super();
@@ -145,16 +154,18 @@ public class Booking {
 		this.facilityId = facilityId;
 	}
 	
+	//constructor with memberId and facilityId
+		public Booking(int bookingId, Integer memberId, Date bookingdate, Date startdate, String comments,
+				String bookstatus, Integer facilityId) {
+			super();
+			this.bookingId = bookingId;
+			this.memberId = memberId;
+			this.bookingdate = bookingdate;
+			this.startdate = startdate;
+			this.comments = comments;
+			this.bookstatus = bookstatus;
+			this.facilityId = facilityId;
+		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

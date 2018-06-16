@@ -1,0 +1,17 @@
+target
+bin
+build
+.gradle
+.springBeans
+*.iml
+*.ipr
+*.iws
+*.log
+.classpath
+.project
+.settings/
+/.settings
+.DS_Store
+test-output/
+node_modules/**
+.orig

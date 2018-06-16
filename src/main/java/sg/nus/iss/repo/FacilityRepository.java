@@ -19,4 +19,11 @@ public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 	@Query("SELECT f from Facility f WHERE f.facilityname LIKE %:facilityName%")
 	ArrayList<Facility> findFacilitiesByFacilityName(@Param("facilityName") String facilityName);
 	
+	@Query("SELECT f from Facility f WHERE upper(f.facilitystatus)='ACTIVE' AND f.categoryid = :categoryId")
+	ArrayList<Facility> findActiveFacilitiesByCategoryId(@Param("categoryId") int categoryId);
+	
+	@Query("SELECT f from Facility f WHERE upper(f.facilitystatus)='ACTIVE'")
+	ArrayList<Facility> findAllActiveFacilities();
+	
+	
 }

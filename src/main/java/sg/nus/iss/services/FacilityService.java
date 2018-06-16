@@ -30,6 +30,10 @@ public interface FacilityService {
 	Facility findFacilityById(int s);
 	
 	Facility changeFacility(Facility f);
+
+	ArrayList<Facility> findActiveFacilitiesByCategoryId(int categoryId);
+	
+	ArrayList<Facility> findAllActiveFacilities();
 	
 	
 }

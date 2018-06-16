@@ -82,6 +82,17 @@ public class FacilityServiceImpl implements FacilityService {
 		return facilityRepository.saveAndFlush(f);
 	}
 
+	@Override
+	public ArrayList<Facility> findActiveFacilitiesByCategoryId(int categoryId) {
+		ArrayList<Facility> arraylist1 = facilityRepository.findActiveFacilitiesByCategoryId(categoryId);
+		return arraylist1;
+	}
+
+	@Override
+	public ArrayList<Facility> findAllActiveFacilities() {
+		return facilityRepository.findAllActiveFacilities();
+	}
+
 		
 	
 }
