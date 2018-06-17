@@ -83,6 +83,7 @@ public class UserBookingController {
 			if (result.hasErrors()) {
 				redirectAttributes.addFlashAttribute("message", "Booking unsuccessful");
 				Map<Integer, String> categories = new LinkedHashMap<Integer,String>();
+				categories.put(0, "Select Category");
 				for (Category c: cService.findAllCategory()) {
 					categories.put(c.getCategoryId(),c.getCategoryname());
 				}

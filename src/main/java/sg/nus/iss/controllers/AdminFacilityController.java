@@ -30,8 +30,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.gson.Gson;
 
+import sg.nus.iss.validators.AdminBookingValidator;
 import sg.nus.iss.validators.FacilityValidator;
-import sg.nus.iss.validators.UserBookingValidator;
 import sg.nus.iss.exceptions.InvalidBookingDate;
 import sg.nus.iss.model.Booking;
 import sg.nus.iss.model.Category;
@@ -39,9 +39,7 @@ import sg.nus.iss.model.Facility;
 import sg.nus.iss.model.User;
 import sg.nus.iss.services.BookingService;
 import sg.nus.iss.services.CategoryService;
-import sg.nus.iss.services.CategoryServiceImpl;
 import sg.nus.iss.services.FacilityService;
-import sg.nus.iss.services.FacilityServiceImpl;
 
 @RequestMapping(value = "/Admin/Facility")
 @Controller
@@ -60,7 +58,7 @@ public class AdminFacilityController {
 	private FacilityValidator fValidator;
 
 	@Autowired
-	private UserBookingValidator bValidator;	
+	private AdminBookingValidator bValidator;	
 
 	@InitBinder("facility")
 	private void initFacilityBinder(WebDataBinder binder) {
@@ -157,6 +155,7 @@ public class AdminFacilityController {
 		if (result.hasErrors()) {
 			redirectAttributes.addFlashAttribute("message", "Booking unsuccessful");
 			Map<Integer, String> categories = new LinkedHashMap<Integer,String>();
+			categories.put(0, "Select Category");
 			for (Category c: cser.findAllCategory()) {
 				categories.put(c.getCategoryId(),c.getCategoryname());
 			}

@@ -62,7 +62,7 @@
     		<td><s:message code="label.booking.sdate" /></td>
 			<td><form:input size="16" path="startdate" id="datepicker1" value="" readonly="true"/>
 			Select a date from the Date Picker   
-			<i><h8>(Reselect faciltiy if datepicker doesn't load)</h8></i>	
+			<i><h8>(Reselect facility if datepicker not loading)</h8></i>	
 			<form:errors path="startdate" cssStyle="color: red;" /></td>
 				
 	</tr>

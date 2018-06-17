@@ -28,7 +28,6 @@ public class UserBookingValidator implements Validator {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if ((booking.getFacilityId()!=null && booking.getStartdate()!=null)){
-			ArrayList<Booking> allbookings = new ArrayList<Booking>();
 			for(Booking b:bService.findCurrentFutureBookingsByFID(booking.getFacilityId())) {
 				if(booking.getFacilityId()==b.getFacilityId()&&dateFormat.format((booking.getStartdate())).equals(dateFormat.format(b.getStartdate()))) {
 					errors.reject("startdate", "Invalid date");
