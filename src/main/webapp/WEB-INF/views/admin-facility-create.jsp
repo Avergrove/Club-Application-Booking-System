@@ -12,7 +12,7 @@
 <body>
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 	<div class="container container-wrapper">
-	<a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>		
+<!-- <a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>	-->	
 	<h3>New Facility page</h3>
 	<form:form method="POST" modelAttribute="facility"
 	action="${pageContext.request.contextPath}/Admin/Facility/create.html">
@@ -52,12 +52,19 @@
 						<form:options items="${categorylist}" itemLabel="categoryname" itemValue="categoryId"/>
 					</form:select></td>
 			</tr>
+			<tr>
 			<td><input type="submit" value="Create" /></td>
-
+			<td><input type="reset" value="Back" id="ffbke"></td>
 			</tr>
 		</tbody>
 	</table>
 	</form:form>
 	</div>
+	
+	<script>
+		document.getElementById("ffbke").onclick = function() {
+			window.history.back();
+		};
+	</script>
 </body>
 

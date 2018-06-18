@@ -26,11 +26,11 @@
 
 <jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 <div class="container container-wrapper">
-	<a href="/iss/Facility/list/"><h2><i class="fa fa-angle-double-left "></i> Return to Browse</h2></a>
+	<!-- <a href="/iss/Admin/Facility/list/"><h2><i class="fa fa-angle-double-left "></i> Return to Browse</h2></a>-->
 <h1>Admin Maintenance Booking</h1>
 <br>
 <br>
-<form:form method="POST" commandName="booking" action="${pageContext.request.contextPath}/Admin/Facility/book-maintenance-date">
+<form:form method="POST" commandName="booking" action="${pageContext.request.contextPath}/Admin/Facility/maintenance">
 <table>
 	
 	<tr>
@@ -77,7 +77,7 @@
     <tr>
         <td><input class="btn btn-primary" type="submit" value="Submit"></td>
      	<td><input class="btn btn-warning" type="reset" id ="new" value="Reset" alt=""></td>
-		<td><input class="btn btn-submit" type="reset" value="Back" id="cdke" alt=""></td>
+		<td><input class="btn btn-submit" type="reset" value="Back" id="fdke" alt=""></td>
     </tr>
     <tr><td><form:errors path="memberId" cssStyle="color: red;" /></td></tr>
 </table>
@@ -94,7 +94,7 @@
 			$('#datepicker1').val('');
 			$.ajax({
 				type:'GET',
-				url:'${pageContext.request.contextPath}/Admin/Facility/book-maintenance-date/loadState/'+catId+'.html',
+				url:'${pageContext.request.contextPath}/Admin/Facility/maintenance/loadState/'+catId+'.html',
 				success: function(result){
 					var result = JSON.parse(result);
 					var str ='';
@@ -113,7 +113,7 @@
 			var facId = $('#facility option:selected').val();
 			$.ajax({
 				type:'GET',
-				url:'${pageContext.request.contextPath}/Admin/Facility/book-maintenance-date/loadDates/'+facId+'.html',
+				url:'${pageContext.request.contextPath}/Admin/Facility/maintenance/loadDates/'+facId+'.html',
 				success: function(result){
 					var disabledDates = JSON.parse(result);
 					$( "#datepicker1" ).datepicker({
@@ -131,7 +131,7 @@
 		});	
 	});
 	$(document).ready(function(){
-		document.getElementById("cdke").onclick = function()
+		document.getElementById("fdke").onclick = function()
 		{
 			window.history.back();
 		};

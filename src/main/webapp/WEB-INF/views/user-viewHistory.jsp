@@ -24,7 +24,8 @@
   <thead>
     <tr>
       <th scope="col">Booking Id</th>
-      <th scope="col">Facility Id</th>
+      <th scope="col">Facility Name</th>
+      <th scope="col">Facility Location</th>
       <th scope="col">Date of Booking</th>
       <th scope="col">Booking Start Date</th>
       <th scope="col">Comments</th>
@@ -35,7 +36,8 @@
 	<c:forEach items="${bookings}" var="booking">
 	<tr>
       <th scope="col"><c:out value="${booking.bookingId}"/></th>
-      <td scope="col"><c:out value="${booking.fac.facilityId}"/></th>
+      <td scope="col"><c:out value="${booking.fac.facilityname}"/></th>
+      <td scope="col"><c:out value="${booking.fac.location}"/></th>
       <td scope="col"><c:out value="${booking.bookingdate}"/></th>
       <td scope="col"><c:out value="${booking.startdate}"/></th>
       <td scope="col"><c:out value="${booking.comments}"/></th>

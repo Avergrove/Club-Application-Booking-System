@@ -14,7 +14,7 @@
 	<jsp:include page="${request.contextPath}/WEB-INF/includes/nav-bar-include.jsp"/>
 
 <div class="container container-wrapper">
-<a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>	
+<!-- <a href="/iss/Admin/Facility/list"><h2><i class="fa fa-angle-double-left "></i> Return to Facility list</h2></a>-->	
 <h3>Facility Edit page</h3>
 
 <form:form method="POST" modelAttribute="facility"
@@ -63,6 +63,7 @@
 			
 			<tr>
 				<td><input type="submit" value="Update" /></td>
+				<td><input type="reset" value="Back" id="febke"></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -70,4 +71,9 @@
 	</table>
 </form:form>
 </div>
+<script>
+		document.getElementById("febke").onclick = function() {
+			window.history.back();
+		};
+	</script>
 </body>

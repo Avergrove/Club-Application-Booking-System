@@ -134,7 +134,7 @@ public class AdminFacilityController {
 	}
 	
 	//Maintenance booking page
-	@RequestMapping(value = "/book-maintenance-date", method = RequestMethod.GET)
+	@RequestMapping(value = "/maintenance", method = RequestMethod.GET)
 	public ModelAndView newBookingPage() {
 		ModelAndView mav = new ModelAndView("admin-facility-maintenance");
 		mav.addObject("booking", new Booking());
@@ -148,7 +148,7 @@ public class AdminFacilityController {
 	}
 	
 	
-	@RequestMapping(value = "/book-maintenance-date", method = RequestMethod.POST)
+	@RequestMapping(value = "/maintenance", method = RequestMethod.POST)
 	public ModelAndView createNewBooking(@ModelAttribute @Valid Booking booking, BindingResult result,
 			final RedirectAttributes redirectAttributes, HttpSession session, HttpServletRequest request) throws ParseException, InvalidBookingDate {
 
@@ -185,14 +185,14 @@ public class AdminFacilityController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "/book-maintenance-date/loadState/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/maintenance/loadState/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public String loadState(@PathVariable("id") int id) {
 		Gson gson = new Gson();
 		return gson.toJson(fser.findFacilitiesByCategory(id));
 	}
 	
-	@RequestMapping(value = "/book-maintenance-date?facilityId={id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/maintenance/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelAndView RedirectBookingPage(@PathVariable("id") int id) {
 		ModelAndView mav = new ModelAndView("admin-facility-maintenance");
@@ -221,7 +221,7 @@ public class AdminFacilityController {
 		mav.addObject("facilitylist",facilities);
 		return mav;
 	}
-	@RequestMapping(value = "/book-maintenance-date/loadDates/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/maintenance/loadDates/{id}", method = RequestMethod.GET)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	@ResponseBody
 	public String loadBookedDates(@PathVariable("id") int id) {

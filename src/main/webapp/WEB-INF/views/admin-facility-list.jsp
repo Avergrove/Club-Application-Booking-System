@@ -28,6 +28,7 @@
 				<th><spring:message code="fieldLabel.FacilityStatus" /></th>
 				<th><spring:message code="fieldLabel.FacilityCategory" /></th>
 				<th><spring:message code="caption.edit" /></th>
+				<th><spring:message code="caption.Maintenance" /></th>
 			</tr>
 			
 		</thead>
@@ -44,6 +45,9 @@
 					<td align="center"><a class="btn btn-primary"
 						href="${pageContext.request.contextPath}/Admin/Facility/edit/${Facility.facilityId}.html"><spring:message
 								code="caption.edit" /></a></td>
+					<td align="center"><a class="btn btn-primary"
+						href="${pageContext.request.contextPath}/Admin/Facility/maintenance/${Facility.facilityId}.html"><spring:message
+								code="caption.Maintenance" /></a></td>
 				</tr>
 			</c:forEach>
 			
